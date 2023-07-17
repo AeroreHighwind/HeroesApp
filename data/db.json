@@ -21,7 +21,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El"
+      "characters": "Kal-El",
+      "alt_img": "https://i.pinimg.com/originals/22/59/b5/2259b5c3642610e36090aa4eb0fc86b5.jpg"
     },
     {
       "id": "dc-flash",
@@ -175,6 +176,15 @@
       "first_appearance": "DMC",
       "characters": "Dante",
       "alt_img": "https://i.pinimg.com/736x/af/df/6a/afdf6adbee3719a93d4ef763f54d37b9.jpg"
+    },
+    {
+      "id": "mRJTCtg",
+      "superhero": "Jingliu",
+      "publisher": "Capcom",
+      "alter_ego": "Jingliu",
+      "first_appearance": "Star Rail",
+      "characters": "Jingliu",
+      "alt_img": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/655ee495-1f57-477d-995a-c2ed63017411/width=450/00536-2754433311.jpeg"
     }
   ]
 }
