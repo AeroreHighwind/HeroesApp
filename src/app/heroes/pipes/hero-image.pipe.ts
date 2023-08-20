@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Hero } from '../interfaces/hero.interface';
+import { Character } from '../interfaces/hero.interface';
 
 @Pipe({
   name: 'heroImage'
 })
 export class HeroImagePipe implements PipeTransform {
 
-  transform(hero: Hero): string {
-    if( !hero.id && !hero.alt_img){
+  transform(character: Character): string {
+    if (!character.id && !character.alt_img) {
       return 'assets/no-image.png'
     }
-    if(hero.alt_img ) return hero.alt_img;
-    
-    return `assets/heroes/${ hero.id }.jpg`;
+    if (character.alt_img) return character.alt_img;
+
+    return `assets/heroes/${character.id}.jpg`;
   }
 
 }

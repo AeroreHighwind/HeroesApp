@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from '../../interfaces/hero.interface';
+import { Character } from '../../interfaces/hero.interface';
 
 @Component({
   selector: 'heroes-hero-card',
@@ -7,13 +7,13 @@ import { Hero } from '../../interfaces/hero.interface';
   styles: [
   ]
 })
-export class CardComponent implements OnInit{
+export class CardComponent implements OnInit {
 
   @Input()
-  public hero!: Hero;
+  public character!: Character;
 
   ngOnInit(): void {
-    if( !this.hero ) throw Error('Hero property is required');
+    if (!this.character) throw Error('Hero property is required');
   }
 
 }

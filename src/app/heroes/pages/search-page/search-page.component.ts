@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Hero } from '../../interfaces/hero.interface';
+import { Character } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -10,29 +10,29 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   styles: [
   ]
 })
-export class SearchPageComponent{
+export class SearchPageComponent {
 
   public searchInput = new FormControl('');
-  public heroes: Hero[] = [];
-  public selectedHero?: Hero;
+  public heroes: Character[] = [];
+  public selectedHero?: Character;
 
-    constructor(private heroesService: HeroesService){}
-  searchHero(){
+  constructor(private heroesService: HeroesService) { }
+  searchHero() {
     const value: string = this.searchInput.value || '';
 
     this.heroesService.getSuggestions(value)
-    .subscribe( heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes);
   }
 
-  onSelectedOption(event: MatAutocompleteSelectedEvent): void{
-    if( !event.option.value) {
+  onSelectedOption(event: MatAutocompleteSelectedEvent): void {
+    if (!event.option.value) {
       this.selectedHero = undefined;
       return
     }
 
-    const hero: Hero = event.option.value;
-    this.searchInput.setValue ( hero.superhero );
-    
+    const hero: Character = event.option.value;
+    this.searchInput.setValue(hero.superhero);
+
     this.selectedHero = hero;
   }
 
