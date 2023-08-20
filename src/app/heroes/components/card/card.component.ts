@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Character } from '../../interfaces/hero.interface';
+import { Character } from '../../interfaces/Character.interface';
 
 @Component({
   selector: 'heroes-hero-card',

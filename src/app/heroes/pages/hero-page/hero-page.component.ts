@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Character } from '../../interfaces/hero.interface';
+import { Character } from '../../interfaces/Character.interface';
 
 @Component({
   selector: 'app-hero-page',

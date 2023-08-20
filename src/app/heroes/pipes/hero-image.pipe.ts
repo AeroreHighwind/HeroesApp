@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Character } from '../interfaces/hero.interface';
+import { Character } from '../interfaces/Character.interface';
 
 @Pipe({
   name: 'heroImage'
