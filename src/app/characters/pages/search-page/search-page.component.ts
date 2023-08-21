@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Character } from '../../interfaces/Character.interface';
-import { HeroesService } from '../../services/heroes.service';
+import { CharactersService } from '../../services/characters.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
@@ -16,11 +16,11 @@ export class SearchPageComponent {
   public heroes: Character[] = [];
   public selectedHero?: Character;
 
-  constructor(private heroesService: HeroesService) { }
+  constructor(private charactersService: CharactersService) { }
   searchHero() {
     const value: string = this.searchInput.value || '';
 
-    this.heroesService.getSuggestions(value)
+    this.charactersService.getSuggestions(value)
       .subscribe(heroes => this.heroes = heroes);
   }
 

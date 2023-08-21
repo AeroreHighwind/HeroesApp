@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Character, Publisher } from '../../interfaces/Character.interface';
-import { HeroesService } from '../../services/heroes.service';
+import { CharactersService } from '../../services/characters.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,7 +34,7 @@ export class NewPageComponent implements OnInit {
   ]
 
   constructor(
-    private heroesService: HeroesService,
+    private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
@@ -51,7 +51,7 @@ export class NewPageComponent implements OnInit {
     if (!this.router.url.includes('edit')) return;
     this.activatedRoute.params
       .pipe(
-        switchMap(({ id }) => this.heroesService.getHeroById(id)),
+        switchMap(({ id }) => this.charactersService.getCharacterById(id)),
       ).subscribe(hero => {
         if (!hero) return this.router.navigateByUrl('/');
 
@@ -64,14 +64,14 @@ export class NewPageComponent implements OnInit {
     if (this.heroForm.invalid) return;
 
     if (this.currentHero.id) {
-      this.heroesService.updateHero(this.currentHero)
+      this.charactersService.updateCharacter(this.currentHero)
         .subscribe(hero => {
           this.showSnackbar(`${hero.superhero} updated!`)
         });
       return;
     }
 
-    this.heroesService.addHero(this.currentHero)
+    this.charactersService.addCharacter(this.currentHero)
       .subscribe(hero => {
         this.router.navigate(['/heroes/edit', hero.id]);
         this.showSnackbar(`${hero.superhero} created!`)
@@ -90,7 +90,7 @@ export class NewPageComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(
         filter((result: boolean) => result),
-        switchMap(() => this.heroesService.deleteHeroById(this.currentHero.id)),
+        switchMap(() => this.charactersService.deleteCharacterById(this.currentHero.id)),
         filter((wasDeleted: boolean) => wasDeleted),
       )
       .subscribe(() => {

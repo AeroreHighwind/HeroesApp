@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroesService } from '../../services/heroes.service';
+import { CharactersService } from '../../services/characters.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Character } from '../../interfaces/Character.interface';
@@ -15,14 +15,14 @@ export class CharacterPageComponent implements OnInit {
   public character?: Character;
 
   constructor(
-    private heroesService: HeroesService,
+    private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        switchMap(({ id }) => this.heroesService.getHeroById(id)),
+        switchMap(({ id }) => this.charactersService.getCharacterById(id)),
       ).subscribe(character => {
 
         if (!character) return this.router.navigate(['heroes/list']);

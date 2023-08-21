@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Character } from '../../interfaces/Character.interface';
 
 @Component({
-  selector: 'heroes-hero-card',
+  selector: 'characters-character-card',
   templateUrl: './card.component.html',
   styles: [
   ]
