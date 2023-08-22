@@ -1,24 +1,24 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>{{ character.superhero }}</mat-card-title>
-    <mat-card-subtitle>{{ character.alter_ego }}</mat-card-subtitle>
+    <mat-card-title>{{ character.name }}</mat-card-title>
+    <mat-card-subtitle>{{ character.title }}</mat-card-subtitle>
   </mat-card-header>
 
   <!--TODO: Imagen-->
   <img
     mat-card-image
     [src]="character | heroImage"
-    [alt]="character.superhero"
+    [alt]="character.name"
     alt=""
   />
   <mat-card-content class="mt-2">
-    <h4>{{ character.publisher }}</h4>
+    <h4>{{ character.creator }}</h4>
     <p>
-      <strong>Primera aparición</strong> {{ character.first_appearance }}
+      <strong>Primera aparición</strong> {{ character.class }}
       <br />
       <mat-chip-listbox>
         <mat-chip
-          *ngFor="let name of character.characters.split(',') | slice : 0 : 3"
+          *ngFor="let name of character.skills.split(',') | slice : 0 : 3"
         >
           {{ name }}
         </mat-chip>

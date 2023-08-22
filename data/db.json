@@ -9,11 +9,11 @@
   "heroes": [
     {
       "id": 1,
-      "superhero": "Iris Stalwart",
-      "publisher": "Capcom",
-      "alter_ego": "Citadels Aegis",
-      "first_appearance": "a",
-      "characters": "a",
+      "name": "Iris Stalwart",
+      "creator": "Independend",
+      "title": "Citadel Aegis",
+      "class": "Knight",
+      "skills": "Soul barrier,Final Ultimate defense,Tears of denial,",
       "alt_img": "https://lh3.googleusercontent.com/drive-viewer/AITFw-zs_2fKx4qEXUm-Zy0Y9KCpbrV1Fc3dPjo7WNYqbKh0I9Hw31Vzf1a5neDVcCKmSS6W1_azGIyPchCDnD1Zd3x9PknZ8A=s1600"
     }
   ]

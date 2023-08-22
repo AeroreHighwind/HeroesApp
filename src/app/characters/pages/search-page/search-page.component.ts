@@ -13,27 +13,27 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class SearchPageComponent {
 
   public searchInput = new FormControl('');
-  public heroes: Character[] = [];
-  public selectedHero?: Character;
+  public characters: Character[] = [];
+  public selectedCharacter?: Character;
 
   constructor(private charactersService: CharactersService) { }
   searchHero() {
     const value: string = this.searchInput.value || '';
 
     this.charactersService.getSuggestions(value)
-      .subscribe(heroes => this.heroes = heroes);
+      .subscribe(characters => this.characters = characters);
   }
 
   onSelectedOption(event: MatAutocompleteSelectedEvent): void {
     if (!event.option.value) {
-      this.selectedHero = undefined;
+      this.selectedCharacter = undefined;
       return
     }
 
     const hero: Character = event.option.value;
-    this.searchInput.setValue(hero.superhero);
+    this.searchInput.setValue(hero.name);
 
-    this.selectedHero = hero;
+    this.selectedCharacter = hero;
   }
 
 

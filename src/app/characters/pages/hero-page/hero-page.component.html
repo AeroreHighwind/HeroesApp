@@ -9,13 +9,13 @@
 <div *ngIf="character; else divLoading" class="grid p-2">
   <mat-card class="col-12 sm:col-6">
     <mat-card-header>
-      <mat-card-title>{{ character.alter_ego }}</mat-card-title>
-      <mat-card-subtitle>{{ character.superhero }}</mat-card-subtitle>
+      <mat-card-title>{{ character.title }}</mat-card-title>
+      <mat-card-subtitle>{{ character.name }}</mat-card-subtitle>
     </mat-card-header>
 
     <img
       [src]="character | heroImage"
-      [alt]="character.superhero"
+      [alt]="character.name"
       mat-card-image
       alt=""
     />
@@ -24,15 +24,15 @@
   <mat-card class="col-12 sm:col-6">
     <mat-card-header>
       <mat-card-title>Información</mat-card-title>
-      <mat-card-subtitle>{{ character.superhero }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ character.name }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <mat-list>
-        <mat-list-item>{{ character.first_appearance }}</mat-list-item>
-        <mat-list-item>{{ character.characters }}</mat-list-item>
-        <mat-list-item>{{ character.publisher }}</mat-list-item>
-        <mat-list-item>{{ character.alter_ego }}</mat-list-item>
+        <mat-list-item>{{ character.class }}</mat-list-item>
+        <mat-list-item>{{ character.skills }}</mat-list-item>
+        <mat-list-item>{{ character.creator }}</mat-list-item>
+        <mat-list-item>{{ character.title }}</mat-list-item>
       </mat-list>
 
       <button mat-button color="warn" (click)="goBack()">Regresar</button>

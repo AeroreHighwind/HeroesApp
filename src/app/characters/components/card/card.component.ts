@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   public character!: Character;
 
   ngOnInit(): void {
-    if (!this.character) throw Error('Hero property is required');
+    if (!this.character) throw Error('Character property is required');
   }
 
 }

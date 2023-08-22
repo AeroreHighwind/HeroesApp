@@ -2,16 +2,14 @@
 
 export interface Character {
     id: string;
-    superhero: string;
-    publisher: Publisher;
-    alter_ego: string;
-    first_appearance: string;
-    characters: string;
+    name: string;
+    creator: Publisher;
+    title: string;
+    class: string;
+    skills: string;
     alt_img?: string;
 }
 
 export enum Publisher {
-    DCComics = "DC Comics",
-    MarvelComics = "Marvel Comics",
-    Capcom = "Capcom"
+    Independent = "Independent",
 }

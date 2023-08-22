@@ -1,7 +1,12 @@
-<h2 mat-dialog-title>Borrar elemento?</h2>
-<mat-dialog-content>Este proceso eliminara el {{data.superhero}} .Esta accion es irreversible.</mat-dialog-content>
+<h2 mat-dialog-title>Delete element?</h2>
+<mat-dialog-content
+  >This process will delete {{ data.name }} .This action is
+  irreversible.</mat-dialog-content
+>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close (click)="onNoClick()">Cancelar</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button  color="primary" (click)="onConfirm()">Borrar</button>
+  <button mat-button cdkFocusInitial color="warn" (click)="onConfirm()">
+    Borrar
+  </button>
 </mat-dialog-actions>

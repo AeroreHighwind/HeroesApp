@@ -1,6 +1,6 @@
 <h1>
-  {{currentHero.id ? 'Editar' : 'Agregar'}}
-  <small>heroe</small>
+  {{ currentCharacter.id ? "Edit" : "Add" }}
+  <small>character</small>
 </h1>
 
 <mat-divider class="mb-2"></mat-divider>
@@ -9,92 +9,90 @@
   <div class="col-6" sm:col-6>
     <mat-card>
       <mat-card-content>
-
         <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
           <mat-form-field class="col-12 sm:col-6">
-            <mat-label>Super heroe</mat-label>
-            <input 
-            matInput
-            type="text" 
-            required
-            formControlName="superhero"
+            <mat-label>Character name</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="name"
+              placeholder="Enter character name"
             />
           </mat-form-field>
 
           <mat-form-field class="col-12 sm:col-6">
-            <mat-label>Alter ego</mat-label>
-            <input 
-            matInput 
-            type="text" 
-            required 
-            formControlName="alter_ego"
+            <mat-label>Title / Position</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="title"
+              placeholder="Enter character title"
             />
           </mat-form-field>
 
           <mat-form-field class="col-12">
-            <mat-label>Primera aparición</mat-label>
-            <input 
-            matInput 
-            type="text" 
-            required 
-            formControlName="first_appearance"
+            <mat-label>Class</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="class"
+              placeholder="Enter character class"
             />
           </mat-form-field>
 
           <mat-form-field class="col-12">
-            <mat-label>Personajes</mat-label>
-            <input 
-            matInput 
-            type="text" 
-            required 
-            formControlName="characters"
+            <mat-label>Skills</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="skills"
+              placeholder="Enter character skills name"
             />
           </mat-form-field>
 
           <mat-form-field class="col-12">
-            <mat-label>Creador</mat-label>
-            <mat-select 
-            formControlName="publisher"
-            required>
-              <mat-option
-                *ngFor="let publisher of publishers"
-                [value]="publisher.id"
-              >
-                {{ publisher.desc }}
+            <mat-label>Creator</mat-label>
+            <mat-select formControlName="creator" required>
+              <mat-option *ngFor="let creator of creators" [value]="creator.id">
+                {{ creator.desc }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="col-12">
-            <mat-label>Alternative Image</mat-label>
-            <input 
-            matInput 
-            type="text"  
-            formControlName="alt_img"
+            <mat-label>Character Image</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="alt_img"
+              placeholder="enter image URL"
             />
           </mat-form-field>
         </form>
 
         <div class="flex justify-content-center">
+          <button
+            *ngIf="currentCharacter.id"
+            (click)="onDeleteHero()"
+            mat-flat-button
+            color="warn"
+            class="mr-3"
+          >
+            Borrar
+          </button>
 
-          <button 
-          *ngIf="currentHero.id"
-          (click)="onDeleteHero()"
-          mat-flat-button 
-          color="warn"
-          class="mr-3">
-          Borrar
-        </button>
-
-          <button 
-          mat-flat-button 
-          color="primary"
-          class="mr-3"
-          (click)="onSubmit()">
-            <mat-icon>
-                save
-            </mat-icon>
-                Guardar
+          <button
+            mat-flat-button
+            color="primary"
+            class="mr-3"
+            (click)="onSubmit()"
+          >
+            <mat-icon> save </mat-icon>
+            Save
           </button>
         </div>
       </mat-card-content>
@@ -102,7 +100,11 @@
   </div>
   <div class="col-12 sm:col-6">
     <mat-card>
-      <img [src]="currentHero | heroImage" alt="imagen del heroe" mat-card-image />
+      <img
+        [src]="currentCharacter | heroImage"
+        alt="character image"
+        mat-card-image
+      />
     </mat-card>
   </div>
 </div>
