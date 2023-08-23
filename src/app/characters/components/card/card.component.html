@@ -4,7 +4,6 @@
     <mat-card-subtitle>{{ character.title }}</mat-card-subtitle>
   </mat-card-header>
 
-  <!--TODO: Imagen-->
   <img
     mat-card-image
     [src]="character | heroImage"
@@ -12,18 +11,20 @@
     alt=""
   />
   <mat-card-content class="mt-2">
-    <h4>{{ character.creator }}</h4>
     <p>
-      <strong>Primera aparición</strong> {{ character.class }}
+      <strong
+        >Class:
+        <mat-icon>shield</mat-icon>
+        {{ character.class }}
+      </strong>
       <br />
       <mat-chip-listbox>
-        <mat-chip
-          *ngFor="let name of character.skills.split(',') | slice : 0 : 3"
-        >
-          {{ name }}
+        <mat-chip *ngFor="let skill of character.skills">
+          {{ skill.name }}
         </mat-chip>
       </mat-chip-listbox>
     </p>
+    <h4>{{ character.creator }}</h4>
   </mat-card-content>
 
   <mat-divider></mat-divider>
@@ -35,14 +36,14 @@
       [routerLink]="['/heroes/edit', character.id]"
     >
       <mat-icon>edit</mat-icon>
-      Editar
+      Edit
     </button>
 
     <span class="spacer"></span>
 
     <button mat-button mat-raised [routerLink]="['/heroes', character.id]">
       <mat-icon>more_horiz</mat-icon>
-      Más
+      More
     </button>
   </mat-card-actions>
 </mat-card>

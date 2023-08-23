@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Character } from '../../interfaces/Character.interface';
+import { Character } from '../../interfaces/character.interface';
 import { CharactersService } from '../../services/characters.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 

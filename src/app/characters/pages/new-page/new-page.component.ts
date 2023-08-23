@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Character, Publisher } from '../../interfaces/Character.interface';
-import { CharactersService } from '../../services/characters.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, switchMap } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { Character, Publisher } from '../../interfaces/character.interface';
+import { CharactersService } from '../../services/characters.service';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { filter, switchMap } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { Skill } from '../../interfaces/skill.interface';
 
 @Component({
   selector: 'app-new-page',
@@ -15,6 +19,9 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
   ]
 })
 export class NewPageComponent implements OnInit {
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  skills: Skill[] = [];
 
   public heroForm = new FormGroup({
     id: new FormControl<string>(''),
@@ -22,7 +29,7 @@ export class NewPageComponent implements OnInit {
     creator: new FormControl<Publisher>(Publisher.Independent),
     title: new FormControl(''),
     class: new FormControl(''),
-    skills: new FormControl(''),
+    skills: new FormControl(),
     alt_img: new FormControl('')
   });
 
@@ -37,6 +44,7 @@ export class NewPageComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
+    private announcer: LiveAnnouncer
   ) { }
 
 
@@ -94,13 +102,51 @@ export class NewPageComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['/heroes']);
       })
-
   }
 
   showSnackbar(message: string): void {
     this.snackbar.open(message, 'done', {
       duration: 2500,
     })
+  }
+
+  //MatChipForm
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.skills.push({ name: value });
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(skills: Skill): void {
+    const index = this.skills.indexOf(skills);
+
+    if (index >= 0) {
+      this.skills.splice(index, 1);
+
+      this.announcer.announce(`Removed ${skills}`);
+    }
+  }
+
+  edit(skills: Skill, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove fruit if it no longer has a name
+    if (!value) {
+      this.remove(skills);
+      return;
+    }
+
+    // Edit existing fruit
+    const index = this.skills.indexOf(skills);
+    if (index >= 0) {
+      this.skills[index].name = value;
+    }
   }
 
 }

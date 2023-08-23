@@ -45,13 +45,31 @@
 
           <mat-form-field class="col-12">
             <mat-label>Skills</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="skills"
-              placeholder="Enter character skills name"
-            />
+            <mat-chip-grid #chipGrid aria-label="Enter character skills">
+              <mat-chip-row
+                *ngFor="let skill of skills"
+                (removed)="remove(skill)"
+                [editable]="true"
+                (edited)="edit(skill, $event)"
+                [aria-description]="'press enter to edit ' + skill.name"
+              >
+                {{ skill.name }}
+                <button
+                  matChipRemove
+                  [attr.aria-label]="'remove ' + skill.name"
+                >
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+              <input
+                formControlName="skills"
+                placeholder="New skill..."
+                [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              />
+            </mat-chip-grid>
           </mat-form-field>
 
           <mat-form-field class="col-12">

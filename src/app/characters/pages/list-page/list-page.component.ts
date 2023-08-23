@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Character } from '../../interfaces/Character.interface';
+import { Character } from '../../interfaces/character.interface';
 import { CharactersService } from '../../services/characters.service';
 
 @Component({
