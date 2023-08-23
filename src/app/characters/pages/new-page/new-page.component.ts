@@ -4,7 +4,7 @@ import { CharactersService } from '../../services/characters.service';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { filter, switchMap } from 'rxjs';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -23,14 +23,14 @@ export class NewPageComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   skills: Skill[] = [];
 
-  public characterForm = new FormGroup({
-    id: new FormControl<string>(''),
-    name: new FormControl<string>('', { nonNullable: true }),
-    creator: new FormControl<Publisher>(Publisher.Independent),
-    title: new FormControl(''),
-    class: new FormControl(''),
+  public characterForm = this.fb.group({
+    id: [''],
+    name: ['', Validators.required],
+    creator: [Publisher.Independent],
+    title: [''],
+    class: [''],
     skills: new FormControl(),
-    alt_img: new FormControl('')
+    alt_img: [''],
   });
 
 
@@ -44,7 +44,8 @@ export class NewPageComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-    private announcer: LiveAnnouncer
+    private announcer: LiveAnnouncer,
+    private fb: FormBuilder
   ) { }
 
 
