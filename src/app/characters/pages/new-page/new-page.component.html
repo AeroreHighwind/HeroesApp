@@ -9,7 +9,7 @@
   <div class="col-6" sm:col-6>
     <mat-card>
       <mat-card-content>
-        <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+        <form class="grid" [formGroup]="characterForm" (ngSubmit)="onSubmit()">
           <mat-form-field class="col-12 sm:col-6">
             <mat-label>Character name</mat-label>
             <input
@@ -44,7 +44,7 @@
           </mat-form-field>
 
           <mat-form-field class="col-12">
-            <mat-label>Skills</mat-label>
+            <mat-label *ngIf="skills.length < 1">Skills</mat-label>
             <mat-chip-grid #chipGrid aria-label="Enter character skills">
               <mat-chip-row
                 *ngFor="let skill of skills"

@@ -23,7 +23,7 @@ export class NewPageComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   skills: Skill[] = [];
 
-  public heroForm = new FormGroup({
+  public characterForm = new FormGroup({
     id: new FormControl<string>(''),
     name: new FormControl<string>('', { nonNullable: true }),
     creator: new FormControl<Publisher>(Publisher.Independent),
@@ -49,7 +49,7 @@ export class NewPageComponent implements OnInit {
 
 
   get currentCharacter(): Character {
-    const character = this.heroForm.value as Character
+    const character = this.characterForm.value as Character
     return character;
   }
 
@@ -61,13 +61,13 @@ export class NewPageComponent implements OnInit {
       ).subscribe(char => {
         if (!char) return this.router.navigateByUrl('/');
 
-        this.heroForm.reset(char);
+        this.characterForm.reset(char);
         return;
       })
   }
 
   onSubmit(): void {
-    if (this.heroForm.invalid) return;
+    if (this.characterForm.invalid) return;
 
     if (this.currentCharacter.id) {
       this.charactersService.updateCharacter(this.currentCharacter)
@@ -78,9 +78,9 @@ export class NewPageComponent implements OnInit {
     }
 
     this.charactersService.addCharacter(this.currentCharacter)
-      .subscribe(hero => {
-        this.router.navigate(['/heroes/edit', hero.id]);
-        this.showSnackbar(`${hero.name} created!`)
+      .subscribe(character => {
+        this.router.navigate(['/heroes/edit', character.id]);
+        this.showSnackbar(`${character.name} created!`)
       });
   }
 
@@ -90,7 +90,7 @@ export class NewPageComponent implements OnInit {
     if (!this.currentCharacter.id) throw Error('Hero id is required');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: this.heroForm.value
+      data: this.characterForm.value
     });
 
     dialogRef.afterClosed()
@@ -110,13 +110,15 @@ export class NewPageComponent implements OnInit {
     })
   }
 
-  //MatChipForm
+  //MatChipForm Setup
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
+    // Add our skill
     if (value) {
       this.skills.push({ name: value });
+      console.log(value)
+      console.log(this.skills)
     }
 
     // Clear the input value
@@ -136,13 +138,13 @@ export class NewPageComponent implements OnInit {
   edit(skills: Skill, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
-    // Remove fruit if it no longer has a name
+    // Remove skill if it no longer has a name
     if (!value) {
       this.remove(skills);
       return;
     }
 
-    // Edit existing fruit
+    // Edit existing skill
     const index = this.skills.indexOf(skills);
     if (index >= 0) {
       this.skills[index].name = value;
