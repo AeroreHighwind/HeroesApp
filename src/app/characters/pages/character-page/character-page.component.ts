@@ -6,7 +6,7 @@ import { Character } from '../../interfaces/character.interface';
 
 @Component({
   selector: 'app-hero-page',
-  templateUrl: './hero-page.component.html',
+  templateUrl: './character-page.component.html',
   styles: [
   ]
 })

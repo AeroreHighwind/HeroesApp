@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HeroesRoutingModule } from './heroes-routing.module';
-import { CharacterPageComponent } from './pages/hero-page/hero-page.component';
+import { CharactersRoutingModule } from './characters-routing.module';
+import { CharacterPageComponent } from './pages/character-page/character-page.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { NewPageComponent } from './pages/new-page/new-page.component';
@@ -30,11 +30,11 @@ import { SkillNamePipe } from './pipes/skill-name.pipe';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HeroesRoutingModule,
+    CharactersRoutingModule,
     MaterialModule
   ],
   exports: [
     SkillNamePipe
   ]
 })
-export class HeroesModule { }
+export class CharactersModule { }

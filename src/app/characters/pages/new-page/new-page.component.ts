@@ -91,7 +91,7 @@ export class NewPageComponent implements OnInit {
 
 
   onDeleteHero() {
-    if (!this.currentCharacter.id) throw Error('Hero id is required');
+    if (!this.currentCharacter.id) throw Error('Character id is required');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: this.characterForm.value
