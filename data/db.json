@@ -59,6 +59,19 @@
         }
       ],
       "alt_img": "https://media.tenor.com/eSpkjacQyokAAAAd/dante-devil-may-cry.gif"
+    },
+    {
+      "id": 3,
+      "name": "Emiya Kiritsugu",
+      "creator": "Independent",
+      "title": "Spellcaster",
+      "class": "Magus Killer",
+      "skills": [
+        {
+          "name": "Time control"
+        }
+      ],
+      "alt_img": "https://e0.pxfuel.com/wallpapers/475/924/desktop-wallpaper-kiritsugu-emiya.jpg"
     }
   ]
 }
