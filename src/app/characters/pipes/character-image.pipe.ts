@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
 @Pipe({
-  name: 'heroImage'
+  name: 'characterImage'
 })
-export class HeroImagePipe implements PipeTransform {
+export class CharacterImagePipe implements PipeTransform {
 
   transform(character: Character): string {
     if (!character.id && !character.alt_img) {
