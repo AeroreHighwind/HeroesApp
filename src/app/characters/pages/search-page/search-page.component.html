@@ -8,7 +8,7 @@
       matInput
       [matAutocomplete]="auto"
       [formControl]="searchInput"
-      (input)="searchHero()"
+      (input)="searchCharacter()"
       placeholder="Character name"
     />
 
@@ -16,8 +16,8 @@
       #auto="matAutocomplete"
       (optionSelected)="onSelectedOption($event)"
     >
-      <mat-option *ngFor="let hero of characters" [value]="hero">
-        {{ hero.name }}
+      <mat-option *ngFor="let char of characters" [value]="char">
+        {{ char.name }}
       </mat-option>
 
       <mat-option

@@ -17,7 +17,7 @@ export class SearchPageComponent {
   public selectedCharacter?: Character;
 
   constructor(private charactersService: CharactersService) { }
-  searchHero() {
+  searchCharacter() {
     const value: string = this.searchInput.value || '';
 
     this.charactersService.getSuggestions(value)
@@ -30,10 +30,10 @@ export class SearchPageComponent {
       return
     }
 
-    const hero: Character = event.option.value;
-    this.searchInput.setValue(hero.name);
+    const char: Character = event.option.value;
+    this.searchInput.setValue(char.name);
 
-    this.selectedCharacter = hero;
+    this.selectedCharacter = char;
   }
 
 

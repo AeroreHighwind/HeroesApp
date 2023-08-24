@@ -11,19 +11,19 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class LayoutPageComponent {
   public sidebarItems = [
-    { label: 'Listado', icon:'label', url:'./list' },
-    { label: 'Añadir', icon:'add', url:'./new-hero' },
-    { label: 'Buscar', icon:'search', url:'./search' },
+    { label: 'Listado', icon: 'label', url: './list' },
+    { label: 'Añadir', icon: 'add', url: './new-character' },
+    { label: 'Buscar', icon: 'search', url: './search' },
   ]
 
   constructor(
-    private authService: AuthService, 
-    private router:Router){}
+    private authService: AuthService,
+    private router: Router) { }
 
-  get user():User | undefined{
+  get user(): User | undefined {
     return this.authService.currentUser;
   }
-  onLogout(){
+  onLogout() {
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }

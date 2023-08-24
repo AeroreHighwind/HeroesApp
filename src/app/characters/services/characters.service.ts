@@ -26,14 +26,14 @@ export class CharactersService {
         return this.http.get<Character[]>(`${this.baseUrl}/characters?q=${query}&_limit=6`);
     }
 
-    addCharacter(hero: Character): Observable<Character> {
-        return this.http.post<Character>(`${this.baseUrl}/characters`, hero);
+    addCharacter(char: Character): Observable<Character> {
+        return this.http.post<Character>(`${this.baseUrl}/characters`, char);
     }
 
-    updateCharacter(hero: Character): Observable<Character> {
-        if (!hero.id) throw Error('Character is required');
+    updateCharacter(char: Character): Observable<Character> {
+        if (!char.id) throw Error('Character is required');
 
-        return this.http.patch<Character>(`${this.baseUrl}/characters/${hero.id}`, hero);
+        return this.http.patch<Character>(`${this.baseUrl}/characters/${char.id}`, char);
     }
 
     deleteCharacterById(id: string): Observable<boolean> {

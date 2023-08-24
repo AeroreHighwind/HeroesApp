@@ -83,14 +83,14 @@ export class NewPageComponent implements OnInit {
 
     this.charactersService.addCharacter(this.currentCharacter)
       .subscribe(character => {
-        this.router.navigate(['/heroes/edit', character.id]);
+        this.router.navigate(['/characters/edit/', character.id]);
         this.showSnackbar(`${character.name} created!`)
       });
   }
 
 
 
-  onDeleteHero() {
+  onDeleteCharacter() {
     if (!this.currentCharacter.id) throw Error('Character id is required');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -104,7 +104,7 @@ export class NewPageComponent implements OnInit {
         filter((wasDeleted: boolean) => wasDeleted),
       )
       .subscribe(() => {
-        this.router.navigate(['/heroes']);
+        this.router.navigate(['/characters']);
       })
   }
 
