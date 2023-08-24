@@ -12,33 +12,33 @@ export class CharactersService {
     constructor(private http: HttpClient) { }
 
     getCharacters(): Observable<Character[]> {
-        return this.http.get<Character[]>(`${this.baseUrl}/heroes`);
+        return this.http.get<Character[]>(`${this.baseUrl}/characters`);
     }
 
     getCharacterById(id: string): Observable<Character | undefined> {
-        return this.http.get<Character>(`${this.baseUrl}/heroes/${id}`)
+        return this.http.get<Character>(`${this.baseUrl}/characters/${id}`)
             .pipe(
                 catchError(error => of(undefined))
             );
     }
 
     getSuggestions(query: string): Observable<Character[]> {
-        return this.http.get<Character[]>(`${this.baseUrl}/heroes?q=${query}&_limit=6`);
+        return this.http.get<Character[]>(`${this.baseUrl}/characters?q=${query}&_limit=6`);
     }
 
     addCharacter(hero: Character): Observable<Character> {
-        return this.http.post<Character>(`${this.baseUrl}/heroes`, hero);
+        return this.http.post<Character>(`${this.baseUrl}/characters`, hero);
     }
 
     updateCharacter(hero: Character): Observable<Character> {
-        if (!hero.id) throw Error('Hero is required');
+        if (!hero.id) throw Error('Character is required');
 
-        return this.http.patch<Character>(`${this.baseUrl}/heroes/${hero.id}`, hero);
+        return this.http.patch<Character>(`${this.baseUrl}/characters/${hero.id}`, hero);
     }
 
     deleteCharacterById(id: string): Observable<boolean> {
 
-        return this.http.delete<Character>(`${this.baseUrl}/heroes/${id}`)
+        return this.http.delete<Character>(`${this.baseUrl}/characters/${id}`)
             .pipe(
                 map(resp => true),
                 catchError(err => of(false)),
