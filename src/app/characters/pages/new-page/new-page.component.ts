@@ -29,13 +29,13 @@ export class NewPageComponent implements OnInit {
     creator: [Publisher.Independent],
     title: [''],
     class: [''],
-    skills: new FormControl(),
+    skills: [this.skills],
     alt_img: [''],
   });
 
 
   public creators = [
-    { id: 'Independend', desc: 'Own creation' }
+    { id: 'Independent', desc: 'Own creation' }
   ]
 
   constructor(
@@ -61,8 +61,10 @@ export class NewPageComponent implements OnInit {
         switchMap(({ id }) => this.charactersService.getCharacterById(id)),
       ).subscribe(char => {
         if (!char) return this.router.navigateByUrl('/');
-
+        //TODO usar el metodo add chips con las keys de los objetos para mostrar
+        //correctamente los nombres de las skilles
         this.characterForm.reset(char);
+        // this.characterForm.controls.skills.reset()
         return;
       })
   }
@@ -71,9 +73,10 @@ export class NewPageComponent implements OnInit {
     if (this.characterForm.invalid) return;
 
     if (this.currentCharacter.id) {
+      this.characterForm.controls.skills.setValue(this.skills)
       this.charactersService.updateCharacter(this.currentCharacter)
-        .subscribe(hero => {
-          this.showSnackbar(`${hero.name} updated!`)
+        .subscribe(character => {
+          this.showSnackbar(`${character.name} updated!`)
         });
       return;
     }
@@ -117,11 +120,12 @@ export class NewPageComponent implements OnInit {
 
     // Add our skill
     if (value) {
-      this.skills.push({ name: value });
-      console.log(value)
+      const newSkill: Skill = {
+        name: value,
+      };
+      this.skills.push(newSkill);
       console.log(this.skills)
     }
-
     // Clear the input value
     event.chipInput!.clear();
   }
@@ -150,6 +154,18 @@ export class NewPageComponent implements OnInit {
     if (index >= 0) {
       this.skills[index].name = value;
     }
+  }
+
+  getCharacterSkills(char: Character): string[] {
+    const skillnames: string[] = [];
+    const skills: Skill[] = char.skills;
+
+    for (const skill of skills) {
+      for (const name of skill.name) {
+        skillnames.push(name)
+      }
+    }
+    return skillnames;
   }
 
 }

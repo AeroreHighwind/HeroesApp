@@ -53,7 +53,7 @@
                 (edited)="edit(skill, $event)"
                 [aria-description]="'press enter to edit ' + skill.name"
               >
-                {{ skill.name }}
+                {{ skill | skillName }}
                 <button
                   matChipRemove
                   [attr.aria-label]="'remove ' + skill.name"

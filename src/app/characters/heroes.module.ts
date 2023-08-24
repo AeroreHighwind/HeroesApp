@@ -12,6 +12,7 @@ import { CardComponent } from './components/card/card.component';
 import { HeroImagePipe } from './pipes/hero-image.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { SkillNamePipe } from './pipes/skill-name.pipe';
 
 
 @NgModule({
@@ -23,13 +24,17 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     SearchPageComponent,
     CardComponent,
     HeroImagePipe,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SkillNamePipe
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HeroesRoutingModule,
     MaterialModule
+  ],
+  exports: [
+    SkillNamePipe
   ]
 })
 export class HeroesModule { }
